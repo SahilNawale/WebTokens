@@ -1,0 +1,61 @@
+//Give intro that include topic name i.e. token authentication
+// Introduction to hashing
+Primary Data structure hastable 
+Secondary Data structure : Avl trees and linked lists
+
+Introduction to token authentication :
+Token-based authentication is a protocol which allows users to verify their identity, and in return receive a unique access token. During the life of the token, users then access the website or app that the token has been issued for, rather than having to re-enter credentials each time they go back to the same webpage, app, or any resource protected with that same token.
+
+Auth tokens work like a stamped ticket. The user retains access as long as the token remains valid. Once the user logs out or quits an app, the token is invalidated.
+
+Token-based authentication is different from traditional password-based or server-based authentication techniques. Tokens offer a second layer of security, and administrators have detailed control over each action and transaction.
+
+But using tokens requires a bit of coding know-how. Most developers pick up the techniques quickly, but there is a learning curve.
+
+The process works like this:
+
+Request: The person asks for access to a server or protected resource. That could involve a login with a password, or it could involve some other process you specify.
+Verification: The server determines that the person should have access. That could involve checking the password against the username, or it could involve another process you specify.
+Tokens: The server communicates with the authentication device, like a ring, key, phone, or similar device. After verification, the server issues a token and passes it to the user.
+Storage: The token sits within the user's browser while work continues.
+If the user attempts to visit a different part of the server, the token communicates with the server again. Access is granted or denied based on the token.
+
+Administrators set limits on tokens. You could allow a one-use token that is immediately destroyed when the person logs out. Or you could set the token to self-destruct at the end of a specified time period.
+
+
+The primary data structure in a hashtable with two layers : 
+
+// Image of data structure
+The first layer is an indexing layer with five possible index 
+// Information about indexing in hashing
+The second layer is the main hashtable that stores tokens with chaining as the collision resolution technique
+// info about chaining.
+
+The secondary data structures used are:
+Avl trees : 
+//image of avl tree
+This is the tree that stores information of all the registered users for login purposes .
+The comparing factor for insertion into the tree is the id of the registered user.
+The avl tree node consits of a pointer that points to a structure that stores the information of user.
+Linked List :
+image of expiry list
+This linked list is a queue . It stores all the currently active tokens only .
+This list is used to manage the validity of all currently active tokens.
+Oldest generated token will be at the start of the queue and newest generated will be inserted at the back of the queue.
+All the tokens that are expired are dequeued from the queue.
+
+Working :
+1 - User is verified by checking for a node with the same credentials as entered by the user
+2 - a token is generated based on the coressponding credentials and current timestamp
+2 - Token is distributed uniformly in all the indexes and inserted into the main hashtable
+3 - Token is pushed into linked list of main hashtable as a pair of token and the timestamp when it was generated.
+4 - Token is also pushed into the expiry list.
+5 - The expiry list is checked at regular intervals to remove expired tokens.
+6 - Whenever user enters a token to get data,the main hastable is checked for that token. If token is present then user data is fetched from the table for the corresponding token, else 
+	access to the data is denied .
+
+// Outro
+
+
+
+
